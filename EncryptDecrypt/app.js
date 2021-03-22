@@ -14,7 +14,7 @@ function encryptText() {
             }
         }
     }
-    document.getElementById("showEncryptedText").innerHTML
+    document.getElementById("showEncryptedText").innerHTML = `Encrypted Text: ${encryptedText}`
 }
 
 function decryptText() {
@@ -41,5 +41,5 @@ function decryptText() {
         }
         decryptedText += " "
     }
-    document.getElementById("showDecryptedText").innerHTML
+    document.getElementById("showDecryptedText").innerHTML = `Decrypted Text: ${decryptedText}`
 }
