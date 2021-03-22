@@ -15,26 +15,28 @@
 <noscript style="font-family: 'Nunito Sans', sans-serif;">Sorry, this Web App only works with Javascript.</noscript>
 
 <h1>Encrypter and Decrypter</h1>
-<!--Encrypt-->
-<div>
-    <form action="./app.js">
-        <label style="font-family: 'Nunito Sans', sans-serif;">Encrypt Text:</label><br>
-        <input type="text" id="textToEncrypt">
-        <input type="submit" onclick="encryptText()" value="Submit">
-    </form>
-    <label style="font-family: 'Nunito Sans', sans-serif;">Encrypted Text:</label><br>
-    <label style="font-family: 'Nunito Sans', sans-serif;" id="showEncryptedText"></label>
-</div>
+<div class="Container">
+    <!--Encrypt-->
+    <div style="padding-bottom: 20px;">
+        <form action="./app.js">
+            <label style="font-family: 'Nunito Sans', sans-serif;">Encrypt Text:</label><br>
+            <input type="text" id="textToEncrypt">
+            <input type="submit" class="btn" onclick="encryptText()" value="Submit">
+        </form>
+        <label style="font-family: 'Nunito Sans', sans-serif;">Encrypted Text:</label><br>
+        <label style="font-family: 'Nunito Sans', sans-serif;" id="showEncryptedText"></label>
+    </div>
 
-<!--Encrypt-->
-<div>
-    <form action="./app.js">
-        <label style="font-family: 'Nunito Sans', sans-serif;">Encrypt Text:</label><br>
-        <input type="text" id="textToDecrypt">
-        <input type="submit" onclick="decryptText()" value="Submit">
-    </form>
-    <label style="font-family: 'Nunito Sans', sans-serif;">Encrypted Text:</label><br>
-    <label style="font-family: 'Nunito Sans', sans-serif;" id="showDecryptedText"></label>
+    <!--Encrypt-->
+    <div>
+        <form action="./app.js">
+            <label style="font-family: 'Nunito Sans', sans-serif;">Encrypt Text:</label><br>
+            <input type="text" id="textToDecrypt">
+            <input type="submit" onclick="decryptText()" value="Submit">
+        </form>
+        <label style="font-family: 'Nunito Sans', sans-serif;">Encrypted Text:</label><br>
+        <label style="font-family: 'Nunito Sans', sans-serif;" id="showDecryptedText"></label>
+    </div>
 </div>
 </body>
 </html>

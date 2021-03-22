@@ -7,8 +7,10 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .Container {
-    max-width: 500px !important;
-    max-height: 600px !important;
+    text-align: left !important;
+    max-width: 500px ;
+    max-height: 600px ;
     border-color: slategray;
-    border-radius: 5px !important;
+    border-width: 2px;
+    border-radius: 5px ;
 }
