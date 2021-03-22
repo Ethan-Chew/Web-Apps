@@ -5,3 +5,10 @@
 body, h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
 }
+
+.Container {
+    max-width: 500px !important;
+    max-height: 600px !important;
+    border-color: slategray;
+    border-radius: 5px !important;
+}
