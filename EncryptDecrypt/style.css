@@ -1,27 +1,42 @@
 .App {
-    text-align: center !important;
+    text-align: center;
 }
 
 body, h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
 }
 
+.Container {
+    text-align: left;
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+}
+
+.ProjContainer {
+    padding: 5px 5px 5px 5px;
+    border: 2px gray;
+    border-radius: 20px;
+    box-shadow: 5px 5px 6px grey;
+    text-align: left !important;
+}
+
+.Center {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
 .btn {
     background-color: #3741d3;
     border-style: None;
-    border-width: 0px !important;
+    border: 1px #3741d3;
     color: #ffffff;
-    padding: 15px 32px;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
     border-radius: 5px !important;
-}
-
-.Container {
-    text-align: left;
-    border: 2px slategray;
-    border-radius: 20px;
-    padding: 10px 10px 10px 10px;
 }

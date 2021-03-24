@@ -10,20 +10,21 @@ body, h1, h2, h3, h4, h5, h6 {
     text-align: left;
     border: 2px aquamarine;
     border-radius: 20px;
-    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 30px;
 }
 
 .ProjContainer {
-    padding: 5px 5px 5px 5px;
-    border: 2px gray;
+    max-width: 500px;
+    padding: 5px 20px 15px;
+    border: 2px solid rgb(237, 237, 237);
     border-radius: 20px;
     box-shadow: 5px 5px 6px grey;
     text-align: left !important;
 }
 
-.Center {
+.Align {
     position: absolute;
-    top: 50%;
+    top: 20%;
     width: 100%;
     text-align: center;
 }
@@ -31,9 +32,9 @@ body, h1, h2, h3, h4, h5, h6 {
 .btn {
     background-color: #3741d3;
     border-style: None;
-    border: 1px #3741d3;
+    border-width: 0px !important;
     color: #ffffff;
-    padding: 15px 32px;
+    padding: 10px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
