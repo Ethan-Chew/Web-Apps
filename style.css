@@ -7,10 +7,36 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .Container {
+    text-align: left;
+    border: 2px aquamarine;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+}
+
+.ProjContainer {
+    padding: 5px 5px 5px 5px;
+    border: 2px gray;
+    border-radius: 20px;
+    box-shadow: 5px 5px 6px grey;
     text-align: left !important;
-    max-width: 500px ;
-    max-height: 600px ;
-    border-color: slategray;
-    border-width: 2px;
-    border-radius: 5px ;
+}
+
+.Center {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+.btn {
+    background-color: #3741d3;
+    border-style: None;
+    border: 1px #3741d3;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px !important;
 }
