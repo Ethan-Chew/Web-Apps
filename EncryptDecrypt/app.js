@@ -14,7 +14,9 @@ function encryptText() {
             }
         }
     }
-    document.getElementById("showEncryptedText").innerHTML = `Encrypted Text: ${encryptedText}`
+    console.log(encryptedText)
+    var showText = document.getElementById("showEncryptedText").innerHTML
+    showText = `Encrypted Text: ${encryptedText}`
 }
 
 function decryptText() {
@@ -41,5 +43,7 @@ function decryptText() {
         }
         decryptedText += " "
     }
-    document.getElementById("showDecryptedText").innerHTML = `Decrypted Text: ${decryptedText}`
+    console.log(decryptedText)
+    var showText = document.getElementById("showDecryptedText").innerHTML
+    showText = `Decrypted Text: ${decryptedText}`
 }
