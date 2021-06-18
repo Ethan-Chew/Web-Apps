@@ -1,5 +1,3 @@
-import styles from '../styles/Home.module.css'
-
 // Components
 import { Box, HStack, Center, VStack, Text, Heading, Button } from "@chakra-ui/react";
 
@@ -13,13 +11,15 @@ export default function Home() {
   }]
   return(
       <Center>
-          <VStack>
-              <Heading fontSize="40px">Random Web Applications</Heading>
-              <HStack>
-                  {Projects.map((Projects) => (
-                      <AppBox Project={Projects}/>
-                  ))}
-              </HStack>
+          <VStack spacing="24px">
+              <Heading mt={5}>Random Web Applications</Heading>
+              <Box>
+                  <HStack>
+                      {Projects.map((Projects) => (
+                          <AppBox Project={Projects}/>
+                      ))}
+                  </HStack>
+              </Box>
           </VStack>
       </Center>
   );
@@ -29,15 +29,14 @@ const AppBox = ({Project}) => {
     const router = useRouter()
     return(
         <Box border="1px solid" borderColor="grey" borderRadius={12} w="100%">
-            <VStack alignItems="left" mx={6} mb={10}>
+            <VStack alignItems="left" mx={6} my={6}>
                 <VStack alignItems="left">
                     <Heading fontSize="20px">{Project.name}</Heading>
                     <Text>{Project.desc}</Text>
                 </VStack>
-                <Button onClick={() => router.push(Project.path)} variantColor="teal" variant="solid">
+                <Button onClick={() => router.push(Project.path)} variant="solid">
                     Go
                 </Button>
-
             </VStack>
         </Box>
     );
