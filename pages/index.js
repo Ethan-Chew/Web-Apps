@@ -11,12 +11,12 @@ export default function Home() {
   }]
   return(
       <Center>
-          <VStack spacing="24px">
+          <VStack spacing={30}>
               <Heading mt={5}>Random Web Applications</Heading>
               <Box>
-                  <HStack>
+                  <HStack spacing={5}>
                       {Projects.map((Projects) => (
-                          <AppBox Project={Projects}/>
+                          <AppBox key={Math.random()} Project={Projects}/>
                       ))}
                   </HStack>
               </Box>
