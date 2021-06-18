@@ -8,13 +8,17 @@ export default function Home() {
       name: "Encrypt and Decrypter",
       desc: "Encrypt and Decrypt your Text with a Custom Cipher",
       path: "/EncrypterDecrypter"
+  },{
+      name: "Interesting Project",
+      desc: "Something I made to help cure boredom! Do try!",
+      path: "https://go.ethanchew.me/hello"
   }]
   return(
       <Center>
           <VStack spacing={30}>
               <Heading mt={5}>Random Web Applications</Heading>
               <Box>
-                  <HStack spacing={5}>
+                  <HStack spacing={5} align="flex-start">
                       {Projects.map((Projects) => (
                           <AppBox key={Math.random()} Project={Projects}/>
                       ))}

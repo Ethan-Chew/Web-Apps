@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 // Components
-import { Box, VStack, Text, Heading, FormControl, FormLabel, Input, Button, Flex } from "@chakra-ui/react";
+import { Box, VStack, Text, Heading, FormControl, FormLabel, Input, Button, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
 
 const EncrypterDecrypter = () => {
     const [encryptText, setEncryptText] = useState('')
@@ -24,22 +24,9 @@ const EncrypterDecrypter = () => {
         alert(`Encrypted Text: ${encryptedText}`)
     }
 
-    const invert = function (obj) {
-
-        let new_obj = {};
-
-        for (var prop in obj) {
-            if(obj.hasOwnProperty(prop)) {
-                new_obj[obj[prop]] = prop;
-            }
-        }
-
-        return new_obj;
-    };
-
     const onDecrypt = (e) => {
         e.preventDefault()
-        const cypher = {"1bHn":"d","2bA0": "n","2j0q": "u","2jx9": "s","4a*(": "v","4bB*": "a","4nq3": "w","24(*": "x",")(*)": "q","*(yz": "y","Ar9b": "o","B3a*": "c","R*(n": "m","a3Vf": "b","a5h*": "p","a(2h": "I","a*(6": "e","aBeL": "l","aP3b": "h","b9a)": "r","bh52": "g","kBH7": "f","lM84": "z","pI0a": "j","r94k": "t","t(A*": "k"}
+        const cypher = {"1bHn":"d","2bA0": "n","2j0q": "u","2jx9": "s","4a*(": "v","4bB*": "a","4nq3": "w","24(*": "x",")(*)": "q","*(yz": "y","Ar9b": "o","B3a*": "c","R*(n": "m","a3Vf": "b","a5h*": "p","a(2h": "i","a*(6": "e","aBeL": "l","aP3b": "h","b9a)": "r","bh52": "g","kBH7": "f","lM84": "z","pI0a": "j","r94k": "t","t(A*": "k"}
         let splittedText = decryptText.split(" ")
         let decryptedText = ""
 
@@ -51,25 +38,27 @@ const EncrypterDecrypter = () => {
                 let index = 0
                 let endIndex = 4
                 for (let j = 0; j < (splittedText[i].length)/4; j++) {
-                    // Check Corr Code
+                    // CheckCorr Code
                     decryptedText += cypher[currentWord.slice(index, endIndex)]
-                    console.log(currentWord.slice(index, endIndex))
+                    if (typeof(decryptedText) == 'undefined') {
+                        alert("Unknown Char in Decipher Text. Use Encrypter Above to Encrypt Text. WIP: Custom Cipher")
+                        return
+                    }
 
                     index += 4
                     endIndex += 4
                 }
                 decryptedText += " "
             }
+            alert(`Encrypted Text: ${decryptedText}`)
         }
-
-        alert(`Encrypted Text: ${decryptedText}`)
     }
 
     return(
         <Box mx={10}>
             <Box mb={8} mt={5}>
                 <Heading mb={1}>Encrypter and Decrypter</Heading>
-                <Text>Currently, does <b>not</b> work with Capital Letters (Made Lower), and any Special Characters (Example: , . ? /)</Text>
+                <Text><i>Currently</i>, does <b>not</b> work with Capital Letters (Made Lower), and any Special Characters (Example: , . ? /)</Text>
             </Box>
 
             <VStack alignItems="left" spacing="30px">
