@@ -50,7 +50,7 @@ const EncrypterDecrypter = () => {
                 }
                 decryptedText += " "
             }
-            alert(`Encrypted Text: ${decryptedText}`)
+            alert(`Decrypted Text: ${decryptedText}`)
         }
     }
 
@@ -82,7 +82,7 @@ const EncrypterDecrypter = () => {
                 {/*Decrypter*/}
                 <VStack alignItems="left" spacing="15px">
                     <Box>
-                        <Text fontSize="2xl" e><b>Decrypter</b></Text>
+                        <Text fontSize="2xl"><b>Decrypter</b></Text>
                     </Box>
                     <Box>
                         <form onSubmit={onDecrypt}>
