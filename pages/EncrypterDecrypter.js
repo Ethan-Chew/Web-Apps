@@ -1,11 +1,31 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 // Components
-import { Box, VStack, Text, Heading, FormControl, FormLabel, Input, Button, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
+import {
+    Box,
+    VStack,
+    Text,
+    Heading,
+    FormControl,
+    FormLabel,
+    Input,
+    Button,
+    AlertDialog,
+    AlertDialogBody,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogContent,
+    AlertDialogOverlay } from "@chakra-ui/react";
 
 const EncrypterDecrypter = () => {
     const [encryptText, setEncryptText] = useState('')
     const [decryptText, setDecryptText] = useState('')
+    const [isOpen, setIsOpen] = useState(false)
+    const [msg, setMsg] = useState([])
+    const [what, setWhat] = useState("")
+
+    const onClose = () => setIsOpen(false)
+    const cancelRef = useRef()
 
     const onEncrypt = (e) => {
         e.preventDefault()
@@ -21,7 +41,9 @@ const EncrypterDecrypter = () => {
             }
             encryptedText += " "
         }
-        alert(`Encrypted Text: ${encryptedText}`)
+        setIsOpen(true)
+        setWhat("Encryption Complete!")
+        setMsg(["Encrypted Text: ", encryptedText])
     }
 
     const onDecrypt = (e) => {
@@ -50,7 +72,9 @@ const EncrypterDecrypter = () => {
                 }
                 decryptedText += " "
             }
-            alert(`Decrypted Text: ${decryptedText}`)
+            setIsOpen(true)
+            setWhat("Decryption Complete!")
+            setMsg(["Decrypted Text: ", decryptedText])
         }
     }
 
@@ -97,6 +121,21 @@ const EncrypterDecrypter = () => {
                     </Box>
                 </VStack>
             </VStack>
+
+            {/*Alert Dialog*/}
+            <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>
+                <AlertDialogOverlay>
+                    <AlertDialogContent>
+                        <AlertDialogHeader fontSize="lg" fontWeight="bold">{what}</AlertDialogHeader>
+                        <AlertDialogBody><b>{msg[0]}</b>{msg[1]}</AlertDialogBody>
+                        <AlertDialogFooter>
+                            <Button ref={cancelRef} onClick={onClose}>
+                                Close
+                            </Button>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialogOverlay>
+            </AlertDialog>
         </Box>
     )
 }

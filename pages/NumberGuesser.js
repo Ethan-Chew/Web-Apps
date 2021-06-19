@@ -18,7 +18,7 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogContent,
-    AlertDialogOverlay, AlertIcon,
+    AlertDialogOverlay
 } from "@chakra-ui/react";
 
 const NumberGuesser = () => {
