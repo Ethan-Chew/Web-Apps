@@ -31,39 +31,50 @@ const NumberGuesser = () => {
     const [status, setStatus] = useState("")
     const [isOpen, setIsOpen] = useState(false)
     const [msg, setMsg] = useState("")
+    const [i, sI] = useState(1)
 
     const onClose = () => setIsOpen(false)
     const cancelRef = useRef()
 
-    let i = 0;
+    const resetGame = () => {
+        setIsOpen(false)
+        setCorrect(0)
+        setMaxNum(100)
+        setMsg("")
+        sI(1)
+        setStatus("")
+        setUserGuess(0)
+        setGameStart(false)
+    }
 
     const handleUserGuess = (e) => {
         e.preventDefault()
 
+        sI(i+1)
         if (numOfGuess - i !== 0) {
-            i += 1
-            if (corrAns === userGuess) {
-                setStatus("c")
-                setMsg(`You got it correct after ${i} tries! Good Job!`)
-                setIsOpen(true)
-                setUserGuess(0)
-                setGameStart(false)
+            if (userGuess > maxNum || userGuess < 0) {
+                setMsg(`Wrong! You gave an answer that is ${(userGuess > maxNum) ? "more than the Maximum Number" : "less than zero"}! You have ${numOfGuess - i} tries left!`)
             } else {
-                setStatus("w")
-                if (clueEnabled) {
-                    setMsg(`Wrong! The answer is ${(corrAns > userGuess) ? "more" : "less"} than your answer! You have ${numOfGuess - i} tries left!`)
+                if (corrAns === userGuess) {
+                    setStatus("c")
+                    setMsg(`You got it correct after ${i} tries! Good Job!`)
+                    setIsOpen(true)
                 } else {
-                    setMsg(`Wrong! You have ${numOfGuess - i} tries left!`)
+                    setStatus("w")
+                    if (clueEnabled) {
+                        setMsg(`Wrong! The answer is ${(corrAns > userGuess) ? "more" : "less"} than your answer! You have ${numOfGuess - i} tries left!`)
+                    } else {
+                        setMsg(`Wrong! You have ${numOfGuess - i} tries left!`)
+                    }
                 }
             }
-        } else {
+        }
+
+        if (numOfGuess - i === 0) {
             setStatus("w")
             setMsg(`Wrong! The correct answer was ${corrAns}!`)
             setIsOpen(true)
-            setUserGuess(0)
-            setGameStart(false)
         }
-        console.log(corrAns, userGuess, status)
     }
 
     const startGame = () => {
@@ -71,6 +82,7 @@ const NumberGuesser = () => {
             setUserGuess(0)
             setGameStart(false)
         } else {
+            resetGame()
             setCorrect(Math.round(Math.random() * maxNum))
             setGameStart(true)
         }
@@ -80,7 +92,8 @@ const NumberGuesser = () => {
         <Box mx={10}>
             <Box mb={4} mt={5}>
                 <Heading mb={1}>Number Guessing</Heading>
-                <Text>Configure the Settings below, and Start the Game!</Text>
+                <Text mb={1}>Configure the Settings below, and Start the Game!</Text>
+                <Text><b>Remember, </b>the Minimum Number is 0. Which means, <b>no</b> choice will be below 0.</Text>
             </Box>
             {/*Configure Game*/}
             <Box mb={10}>
@@ -120,7 +133,7 @@ const NumberGuesser = () => {
                 <Text fontSize="3xl"><b>Game</b></Text>
                 {gameStarted ? (
                     <form onSubmit={handleUserGuess}>
-                        <FormControl id="user-guessing" isRequired>
+                        <FormControl id="user-guessing" isRequired isInvalid={status === "w"}>
                             <FormLabel>Guess the Number!</FormLabel>
                             <NumberInput borderColor={(status === "c") ? "green" : (status === "w") ? "tomato" : ""} defaultValue={100} min={0} size="sm" allowMouseWheel>
                                 <NumberInputField onChange={(e) => setUserGuess(Number(e.currentTarget.value))} />
@@ -134,24 +147,25 @@ const NumberGuesser = () => {
                                 Guess!
                             </Button>
                         </FormControl>
-                        <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>
-                            <AlertDialogOverlay>
-                                <AlertDialogContent>
-                                    <AlertDialogHeader fontSize="lg" fontWeight="bold">{(status === "c") ? "Congratulations!" : "Try again!"}</AlertDialogHeader>
-                                    <AlertDialogBody>{msg}</AlertDialogBody>
-                                    <AlertDialogFooter>
-                                        <Button ref={cancelRef} onClick={onClose}>
-                                            Close
-                                        </Button>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialogOverlay>
-                        </AlertDialog>
                     </form>
                 ) : (
                     <Text>You have <b>not</b> started a game!</Text>
                 )}
             </Box>
+            {/*Alert Dialog*/}
+            <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>
+                <AlertDialogOverlay>
+                    <AlertDialogContent>
+                        <AlertDialogHeader fontSize="lg" fontWeight="bold">{(status === "c") ? "Congratulations!" : "Try again!"}</AlertDialogHeader>
+                        <AlertDialogBody>{msg}</AlertDialogBody>
+                        <AlertDialogFooter>
+                            <Button ref={cancelRef} onClick={onClose}>
+                                Close
+                            </Button>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialogOverlay>
+            </AlertDialog>
         </Box>
     )
 }

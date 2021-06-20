@@ -1,5 +1,5 @@
 // Components
-import { Box, HStack, Center, VStack, Text, Heading, Button } from "@chakra-ui/react";
+import { Box, Stack, Center, VStack, Text, Heading, Button } from "@chakra-ui/react";
 
 import { useRouter } from 'next/router'
 
@@ -9,8 +9,8 @@ export default function Home() {
       desc: "Encrypt and Decrypt your Text with a Custom Cipher",
       path: "/EncrypterDecrypter"
   },{
-      name: "Interesting Project",
-      desc: "Something I made to help cure boredom! Do try!",
+      name: "Number Guessing",
+      desc: "Can you guess the correct number?",
       path: "https://go.ethanchew.me/hello"
   }]
   return(
@@ -18,11 +18,11 @@ export default function Home() {
           <VStack spacing={30}>
               <Heading mt={5}>Random Web Applications</Heading>
               <Box>
-                  <HStack spacing={5} align="flex-start">
+                  <Stack spacing={5} align="flex-start" direction={["column", "row"]}>
                       {Projects.map((Projects) => (
                           <AppBox key={Math.random()} Project={Projects}/>
                       ))}
-                  </HStack>
+                  </Stack>
               </Box>
           </VStack>
       </Center>

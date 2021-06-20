@@ -1,5 +1,6 @@
 import '../styles/globals.css'
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { ChakraProvider, extendTheme, VStack } from "@chakra-ui/react"
+import Footer from "../components/Footer";
 
 const theme = extendTheme({
     config: {
@@ -11,7 +12,10 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }) {
   return(
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+        <VStack spacing={70}>
+            <Component {...pageProps} />
+            <Footer />
+        </VStack>
       </ChakraProvider>
   )
 }
