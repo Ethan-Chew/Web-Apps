@@ -53,7 +53,9 @@ const EncrypterDecrypter = () => {
         let decryptedText = ""
 
         if (Number(splittedText.join("").length) % 4 !== 0) {
-            alert(`Not able to be Decrypted. Length needs to be divided 4. Current Length: ${splittedText.join("").length}`)
+            setIsOpen(true)
+            setWhat("Error")
+            setMsg(["Not able to be Decrypted. Length needs to be divided 4.", `Current Length: ${splittedText.join("").length}.`])
         } else {
             for (let i = 0; i < splittedText.length; i++) {
                 const currentWord = splittedText[i]
@@ -63,8 +65,9 @@ const EncrypterDecrypter = () => {
                     // CheckCorr Code
                     decryptedText += cypher[currentWord.slice(index, endIndex)]
                     if (typeof(decryptedText) == 'undefined') {
-                        alert("Unknown Char in Decipher Text. Use Encrypter Above to Encrypt Text. WIP: Custom Cipher")
-                        return
+                        setIsOpen(true)
+                        setWhat("Error")
+                        setMsg(["Unknown Char in Decipher Text. Use Encrypter Above to Encrypt Text.", "WIP: Custom Cipher."])
                     }
 
                     index += 4

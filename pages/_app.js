@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { ChakraProvider, extendTheme, VStack } from "@chakra-ui/react"
 import Footer from "../components/Footer";
+// import NavBar from "../components/NavBar";
 
 const theme = extendTheme({
     config: {
@@ -12,7 +13,8 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }) {
   return(
       <ChakraProvider theme={theme}>
-        <VStack spacing={70}>
+        <VStack spacing={50}>
+            {/*<NavBar />*/}
             <Component {...pageProps} />
             <Footer />
         </VStack>
