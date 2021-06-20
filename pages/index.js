@@ -11,7 +11,7 @@ export default function Home() {
   },{
       name: "Number Guessing",
       desc: "Can you guess the correct number?",
-      path: "https://go.ethanchew.me/hello"
+      path: "/NumberGuesser"
   }]
   return(
       <Center>
