@@ -1,11 +1,12 @@
 import '../styles/globals.css'
 import { ChakraProvider, extendTheme, VStack } from "@chakra-ui/react"
 import Footer from "../components/Footer";
-// import NavBar from "../components/NavBar";
+
+// All Pages
 
 const theme = extendTheme({
     config: {
-        useSystemColorMode: true,
+        useSystemColorMode: false,
         initialColorMode: "dark"
     }
 });

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
     Box,
     Heading,
@@ -35,6 +35,10 @@ const NumberGuesser = () => {
 
     const onClose = () => setIsOpen(false)
     const cancelRef = useRef()
+
+    useEffect(() => {
+        document.title = "Web Apps | Number Guesser";
+    })
 
     const resetGame = () => {
         setIsOpen(false)
@@ -135,7 +139,7 @@ const NumberGuesser = () => {
                     <form onSubmit={handleUserGuess}>
                         <FormControl id="user-guessing" isRequired isInvalid={status === "w"}>
                             <FormLabel>Guess the Number!</FormLabel>
-                            <NumberInput borderColor={(status === "c") ? "green" : (status === "w") ? "tomato" : ""} defaultValue={100} min={0} size="sm" allowMouseWheel>
+                            <NumberInput borderColor={(status === "c") ? "green" : (status === "w") ? "tomato" : ""} defaultValue={0} min={0} size="sm" allowMouseWheel>
                                 <NumberInputField onChange={(e) => setUserGuess(Number(e.currentTarget.value))} />
                                 <NumberInputStepper>
                                     <NumberIncrementStepper />

@@ -1,6 +1,6 @@
 // Components
 import { Box, Stack, Center, VStack, Text, Heading, Button } from "@chakra-ui/react";
-
+import { useEffect } from "react";
 import { useRouter } from 'next/router'
 
 export default function Home() {
@@ -12,13 +12,21 @@ export default function Home() {
       name: "Number Guessing",
       desc: "Can you guess the correct number?",
       path: "/NumberGuesser"
+  },{
+      name: "Login System",
+      desc: "Created with Firebase (Firestore). Its.. pretty much useless.",
+      path: "/WIP"
   }]
+
+  useEffect(() => {
+      document.title = "Web Apps | Home";
+  })
   return(
       <Center>
           <VStack spacing={30}>
-              <Heading mt={5}>Random Web Applications</Heading>
+              <Heading mt={5} alignItems={"center"}>Random Web Applications</Heading>
               <Box>
-                  <Stack spacing={5} align="flex-start" direction={["column", "row"]}>
+                  <Stack ml={2} mr={2} spacing={5} align="flex-start" direction={["column", "row"]}>
                       {Projects.map((Projects) => (
                           <AppBox key={Math.random()} Project={Projects}/>
                       ))}

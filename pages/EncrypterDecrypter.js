@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useRef, useState, useEffect} from "react";
 
 // Components
 import {
@@ -26,6 +26,10 @@ const EncrypterDecrypter = () => {
 
     const onClose = () => setIsOpen(false)
     const cancelRef = useRef()
+
+    useEffect(() => {
+        document.title = "Web Apps | Encrypter, Decrypter";
+    })
 
     const onEncrypt = (e) => {
         e.preventDefault()
