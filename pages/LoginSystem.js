@@ -10,6 +10,7 @@ import {
     Button,
     Stack,
     VStack,
+    form,
     AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter
 } from '@chakra-ui/react'
 import {useRef, useState} from 'react'
@@ -18,22 +19,6 @@ import sha256 from 'crypto-js/sha256'
 export default function LoginSystem() {
     const [loginStatus, setStatus] = useState("nli")
     const [hashUser, setHashUser] = useState("John Doe")
-
-    // Firebase Config
-    const firebase = require("firebase")
-    require("firebase/firestore");
-
-    const firebaseConfig = {
-        apiKey: process.env.FIREBASE_API_KEY,
-        authDomain: "web-app-login-38ce8.firebaseapp.com",
-        projectId: "web-app-login-38ce8",
-        storageBucket: "web-app-login-38ce8.appspot.com",
-        messagingSenderId: process.env.FIREBASE_MSI,
-        appId: process.env.FIREBASE_APP_ID
-    };
-
-    firebase.initializeApp(firebaseConfig)
-    let database = firebase.firestore()
 
     return(
         <Box mx={10}>
@@ -47,12 +32,12 @@ export default function LoginSystem() {
                     <VStack alignItems="left">
                         <Text fontSize={"3xl"}><b>Login</b></Text>
                         <Text>Login to your existing account!</Text>
-                        <LoginForm status={loginStatus} db={database} />
+                        <LoginForm status={loginStatus} />
                     </VStack>
                     <VStack alignItems="left">
                         <Text fontSize={"3xl"}><b>Create Account</b></Text>
                         <Text>Don't have an account? Create one!</Text>
-                        <CreateAccount db={database} />
+                        <CreateAccount />
                     </VStack>
                 </Stack>
             </Center>
@@ -101,38 +86,52 @@ const CreateAccount = () => {
     const onClose = () => setIsOpen(false)
     const cancelRef = useRef()
 
-    const handleCreate = ({ db }) => {
+    const handleCreate = (e) => {
+        e.preventDefault()
         if (PW1 !== PW2) {
             setMSG(["Error" ,"Different Passwords."])
+        } else {
+            console.log(PW1, PW2, hashUN)
+        }
+        sendToDatabase(hashUN, PW1)
+    }
+
+    async function sendToDatabase(username, password) {
+        try {
+            
+        } catch (err) {
+            console.log(err)
         }
     }
 
     return(
         <Box border="1px solid" borderColor="gray" borderRadius={10}>
             <Box my={5} mr={3} ml={3}>
-                <FormControl onSubmit={handleCreate} isRequired>
-                    <FormLabel>Username</FormLabel>
-                    <Input placeholder="John Doe" onChange={(e) => {
-                        if (e.currentTarget.value !== "John Doe") {
-                            setHashUN(sha256(e.currentTarget.value))
-                        }
-                    }} />
-                    <FormLabel>Password</FormLabel>
-                    <Input onChange={(e) => {
-                        if (e.currentTarget.value.length < 5) {
-                            setMSG(["Error" ,"Password Length too short!"])
-                        } else {
-                            setPW1(sha256(e.currentTarget.value))
-                        }
-                    }}/>
-                    <FormLabel>Confirm Password</FormLabel>
-                    <Input onChange={(e) => {
-                        setPW2(sha256(e.currentTarget.value))
-                    }}/>
-                    <Button type="submit" variantColor="teal" variant="outline" width="full" mt={4}>
-                        Create Account
-                    </Button>
-                </FormControl>
+                <form onSubmit={handleCreate}>
+                    <FormControl isRequired>
+                        <FormLabel>Username</FormLabel>
+                        <Input placeholder="John Doe" onChange={(e) => {
+                            if (e.currentTarget.value !== "John Doe") {
+                                setHashUN(sha256(e.currentTarget.value))
+                            }
+                        }} />
+                        <FormLabel>Password</FormLabel>
+                        <Input onChange={(e) => {
+                            if (e.currentTarget.value.length < 5) {
+                                setMSG(["Error" ,"Password Length too short!"])
+                            } else {
+                                setPW1(sha256(e.currentTarget.value))
+                            }
+                        }}/>
+                        <FormLabel>Confirm Password</FormLabel>
+                        <Input onChange={(e) => {
+                            setPW2(sha256(e.currentTarget.value))
+                        }}/>
+                        <Button type="submit" variantColor="teal" variant="outline" width="full" mt={4}>
+                            Create Account
+                        </Button>
+                    </FormControl>
+                </form>
             </Box>
             {/*Alert Dialog*/}
             <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>

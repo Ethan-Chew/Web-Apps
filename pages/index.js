@@ -13,9 +13,9 @@ export default function Home() {
       desc: "Can you guess the correct number?",
       path: "/NumberGuesser"
   },{
-      name: "Login System",
-      desc: "Created with Firebase (Firestore). Its.. pretty much useless.",
-      path: "/WIP"
+      name: "QR Code Generator",
+      desc: "Well.. Generate a QR Code.",
+      path: "/QR"
   }]
 
   useEffect(() => {
@@ -26,9 +26,9 @@ export default function Home() {
           <VStack spacing={30}>
               <Heading mt={5} alignItems={"center"}>Random Web Applications</Heading>
               <Box>
-                  <Stack ml={2} mr={2} spacing={5} align="flex-start" direction={["column", "row"]}>
+                  <Stack ml={6} mr={6} spacing={5} align="flex-start" direction={["column", "row"]}>
                       {Projects.map((Projects) => (
-                          <AppBox key={Math.random()} Project={Projects}/>
+                          <AppBox key={Projects.name} Project={Projects}/>
                       ))}
                   </Stack>
               </Box>
