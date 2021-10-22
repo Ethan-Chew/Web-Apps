@@ -1,5 +1,5 @@
 // Components
-import { Box, Stack, Center, VStack, Text, Heading, Button } from "@chakra-ui/react";
+import { Box, Stack, Center, VStack, Text, Heading, Button, SimpleGrid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useRouter } from 'next/router'
 
@@ -26,11 +26,11 @@ export default function Home() {
           <VStack spacing={30}>
               <Heading mt={5} alignItems={"center"}>Random Web Applications</Heading>
               <Box>
-                  <Stack ml={6} mr={6} spacing={5} align="flex-start" direction={["column", "row"]}>
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
                       {Projects.map((Projects) => (
                           <AppBox key={Projects.name} Project={Projects}/>
                       ))}
-                  </Stack>
+                  </SimpleGrid>
               </Box>
           </VStack>
       </Center>
